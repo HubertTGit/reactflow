@@ -8,6 +8,7 @@ import {
   Connection,
   Controls,
   Edge,
+  EdgeChange,
   MiniMap,
   Node,
   ReactFlow,
@@ -29,7 +30,7 @@ export const FlowBuilder = ({
   initialNodes,
   initialEdges,
 }: FlowBuilderProps) => {
-  const [nodes, setNode, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [payload, setPayload] = useState<Partial<IPayload> | null>(null);
@@ -47,6 +48,10 @@ export const FlowBuilder = ({
 
     dialogRef.current?.showModal();
   }, [payload]);
+
+  useEffect(() => {
+    console.log(nodes, edges);
+  }, [nodes, edges]);
 
   const onDrop = useCallback(
     (evt: React.DragEvent<HTMLDivElement>) => {

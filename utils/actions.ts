@@ -44,18 +44,6 @@ export async function addNodeAction(
     node.data.color = color;
   }
 
-  if (type === INodeTypeEnum.input) {
-    node.className = `${TypeColorEnum.inputBorderColor} border-2`;
-  }
-
-  if (type === INodeTypeEnum.output) {
-    node.className = `${TypeColorEnum.outputBorderColor} border-2`;
-  }
-
-  if (type === INodeTypeEnum.mixer) {
-    node.className = `${TypeColorEnum.mixerBorderColor} border-2 border-dashed`;
-  }
-
   const all = [...nodes, node];
 
   try {
@@ -88,41 +76,25 @@ export async function editNodeAction(
 
   const label = formData.get('label');
   const color = formData.get('color') as string;
-  const { type, position, id } = payload;
+  const { id } = payload;
 
-  const node: Node = {
-    id: id as string,
-    type,
-    position: position ?? { x: 0, y: 0 },
-    data: {
-      label,
-    },
-  };
+  nodes.map((n) => {
+    if (n.id === id) {
+      if (color) {
+        n.style = {
+          backgroundColor: `color-mix(${color}, #000000)`,
+        };
+        n.data.color = `color-mix(${color}, #000000)`;
+      }
 
-  if (color) {
-    node.style = {
-      backgroundColor: color,
-    };
-
-    node.data.color = color;
-  }
-
-  if (type === INodeTypeEnum.input) {
-    node.className = `${TypeColorEnum.inputBorderColor} border-2`;
-  }
-
-  if (type === INodeTypeEnum.output) {
-    node.className = `${TypeColorEnum.outputBorderColor} border-2`;
-  }
-
-  if (type === INodeTypeEnum.mixer) {
-    node.className = `${TypeColorEnum.mixerBorderColor} border-2 border-dashed`;
-  }
-
-  const all = [...nodes, node];
+      if (label) {
+        n.data.label = label;
+      }
+    }
+  });
 
   try {
-    await fs.writeFile(nodespath, JSON.stringify(all));
+    await fs.writeFile(nodespath, JSON.stringify(nodes));
 
     //revalidatePath('/');
   } catch (error) {

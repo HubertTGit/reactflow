@@ -2,9 +2,9 @@
   {
     "id": "5ae88cfc-8a7d-4dbf-acb0-dc8b104bd26a",
     "type": "input",
-    "position": { "x": -15, "y": -667 },
-    "data": { "label": "qwqwqw", "color": "#b8ec27" },
-    "style": { "backgroundColor": "#b8ec27" },
+    "position": { "x": 9.5, "y": -1083.5 },
+    "data": { "label": "Hubert", "color": "#89a932" },
+    "style": { "backgroundColor": "#89a932" },
     "measured": { "width": 150, "height": 40 },
     "selected": false,
     "dragging": false
@@ -12,8 +12,43 @@
   {
     "id": "8a1de154-ba2d-4dbd-b3c0-67eb6b67f059",
     "type": "mixer",
-    "position": { "x": 75, "y": -810 },
+    "position": { "x": 172.99861274428866, "y": -904.9951446050103 },
     "data": { "label": "hubert" },
-    "className": "border-blue-700 border-2 border-dashed"
+    "className": "border-blue-700 border-2 border-dashed",
+    "measured": { "width": 150, "height": 40 },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "dbef0ade-3825-4c82-b965-a8a8a34db5e5",
+    "type": "input",
+    "position": { "x": 323, "y": -1097 },
+    "data": { "label": "Juno", "color": "#e52424" },
+    "style": { "backgroundColor": "#e52424" },
+    "className": "border-green-600 border-2",
+    "measured": { "width": 150, "height": 40 },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "c42ac247-5383-4429-b1ae-23c4d9cd219d",
+    "type": "output",
+    "position": { "x": 172.5, "y": -798.5 },
+    "data": { "label": "some out color" },
+    "className": "border-orange-400 border-2",
+    "measured": { "width": 150, "height": 40 },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "9548cf01-3984-4ed6-9bd7-c9099a3f0e2a",
+    "type": "input",
+    "position": { "x": 163.11138605202515, "y": -1040.2915833098461 },
+    "data": { "label": "qwqwqw", "color": "color-mix(#c9d520, #000000)" },
+    "style": { "backgroundColor": "color-mix(#c9d520, #000000)" },
+    "className": "border-green-600 border-2",
+    "measured": { "width": 150, "height": 40 },
+    "selected": true,
+    "dragging": false
   }
 ]
