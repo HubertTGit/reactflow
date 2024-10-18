@@ -21,6 +21,7 @@ import { CreateNodeForm } from './createNode';
 import { INodeTypeEnum, IPayload } from '@/utils/interface';
 import clsx from 'clsx';
 import { EditNodeForm } from './editNodeForm';
+import DialogComponent from './dialogComponent';
 
 export type FlowBuilderProps = {
   initialNodes: Node[];
@@ -94,35 +95,12 @@ export const FlowBuilder = ({
 
   return (
     <>
-      <dialog
+      <DialogComponent
         ref={dialogRef}
-        className={clsx(
-          'min-w-20 bg-white p-3 rounded-lg border-2 backdrop:bg-black/25 backdrop:backdrop-blur-sm',
-          {
-            'border-green-600': payload?.type === INodeTypeEnum.input,
-            'border-orange-400': payload?.type === INodeTypeEnum.output,
-            'border-blue-700': payload?.type === INodeTypeEnum.mixer,
-            'border-dashed': payload?.type === INodeTypeEnum.mixer,
-          }
-        )}
-      >
-        <div>
-          <h1>{payload?.type} Node</h1>
-          {payload?.isEdit ? (
-            <EditNodeForm
-              payload={payload}
-              closeDialog={closeModalHandler}
-              nodes={nodes}
-            />
-          ) : (
-            <CreateNodeForm
-              payload={payload}
-              closeDialog={closeModalHandler}
-              nodes={nodes}
-            />
-          )}
-        </div>
-      </dialog>
+        payload={payload}
+        nodes={nodes}
+        closeModalHandler={closeModalHandler}
+      />
       <ReactFlow
         edges={edges}
         nodes={nodes}
