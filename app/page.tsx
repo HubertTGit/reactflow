@@ -1,9 +1,8 @@
 import { promises as fs } from 'fs';
-import { FlowBuilder } from '../components/flowBuilder';
-import { Edge, Node } from '@xyflow/react';
-
-const nodespath = process.cwd() + '/app/nodes.json';
-const edgespath = process.cwd() + '/app/edges.json';
+import { FlowBuilder } from '../ui/flowBuilder';
+import { Edge, Node, ReactFlowProvider } from '@xyflow/react';
+import { NodeSelector } from '@/ui/nodeSelector';
+import { nodespath, edgespath } from '@/utils/constant';
 
 export default async function Home() {
   const nodesData = await fs.readFile(nodespath, 'utf-8');
@@ -12,8 +11,19 @@ export default async function Home() {
   const edgesParsed = JSON.parse(edgesData) satisfies Edge[];
 
   return (
-    <main className="w-screen h-screen">
-      <FlowBuilder initialNodes={nodesParsed} initialEdges={edgesParsed} />
-    </main>
+    <>
+      <main className="grid grid-cols-10 h-screen w-screen">
+        <div className="col-span-9">
+          <ReactFlowProvider>
+            <FlowBuilder
+              initialNodes={nodesParsed}
+              initialEdges={edgesParsed}
+            />
+          </ReactFlowProvider>
+        </div>
+
+        <NodeSelector />
+      </main>
+    </>
   );
 }
