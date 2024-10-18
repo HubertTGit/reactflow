@@ -1,13 +1,16 @@
 'use client';
 
 import { Handle, Position, Node } from '@xyflow/react';
-import React from 'react';
 
 export const InputNode = ({ id, data }: Node) => {
+  const label = data.label as string;
+  const color = data.color as string;
   return (
-    <div className="p-3 rounded-lg border-2 border-blue-700">
-      <div>{id}</div>
-      <div>{data.toString()}</div>
+    <div
+      className="p-2 rounded-lg border-2 border-green-600 text-sm"
+      style={{ backgroundColor: color }}
+    >
+      <div>{label}</div>
       <Handle type="source" position={Position.Bottom} />
     </div>
   );

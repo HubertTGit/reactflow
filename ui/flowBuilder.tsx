@@ -15,11 +15,15 @@ import {
   useEdgesState,
   useNodesState,
   useReactFlow,
+  NodeTypes,
 } from '@xyflow/react';
 
 import '@xyflow/react/dist/style.css';
 import { INodeTypeEnum, IPayload } from '@/utils/interface';
 import DialogComponent from './dialogComponent';
+import { InputNode } from './inputNode';
+import { OutputNode } from './outputNode';
+import { MixerNode } from './mixerNode';
 
 export type FlowBuilderProps = {
   initialNodes: Node[];
@@ -95,6 +99,12 @@ export const FlowBuilder = ({
     setPayload(null);
   };
 
+  const nodeTypes = {
+    inputNode: InputNode,
+    outputNode: OutputNode,
+    mixerNode: MixerNode,
+  } as unknown as NodeTypes;
+
   return (
     <>
       <DialogComponent
@@ -112,6 +122,7 @@ export const FlowBuilder = ({
         onDrop={onDrop}
         onDragOver={onDragOver}
         onNodeDoubleClick={onNodeDoubleClick}
+        nodeTypes={nodeTypes}
         fitView
       >
         <Controls />

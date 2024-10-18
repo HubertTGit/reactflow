@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import { saveAll } from '@/utils/actions';
-import { TypeColorEnum } from '@/utils/constant';
-import { INodeTypeEnum } from '@/utils/interface';
-import { useReactFlow } from '@xyflow/react';
-import clsx from 'clsx';
-import { SaveButton } from './saveButton';
+import { saveAll } from "@/utils/actions";
+import { TypeColorEnum } from "@/utils/constant";
+import { INodeTypeEnum } from "@/utils/interface";
+import { useReactFlow } from "@xyflow/react";
+import clsx from "clsx";
+import { SaveButton } from "./saveButton";
 
 const onDragStart = (
   event: React.DragEvent<HTMLDivElement>,
-  type: INodeTypeEnum
+  type: INodeTypeEnum,
 ) => {
-  event.dataTransfer.setData('widgetType', type);
+  event.dataTransfer.setData("widgetType", type);
 };
 
 export const NodeSelector = () => {
   const { getEdges, getNodes } = useReactFlow();
 
   return (
-    <aside className="p-3 h-screen flex flex-col gap-4 items-center">
+    <aside className="flex h-screen flex-col items-center gap-4 p-3">
       {/* Draggable nodes */}
       <div>
         <h3 className="pb-4 text-center">Drag&drop a Node</h3>
@@ -26,31 +26,32 @@ export const NodeSelector = () => {
           draggable
           onDragStart={(e) => onDragStart(e, INodeTypeEnum.input)}
           className={clsx([
-            'p-3  border-2 mb-2 cursor-move rounded-md text-center bg-white',
+            "mb-2 cursor-move rounded-md border-2 bg-white p-3 text-center",
             TypeColorEnum.inputBorderColor,
           ])}
         >
           Input
         </div>
-        <div
-          draggable
-          onDragStart={(e) => onDragStart(e, INodeTypeEnum.output)}
-          className={clsx([
-            'p-3  border-2 mb-2 cursor-move rounded-md text-center bg-white',
-            TypeColorEnum.outputBorderColor,
-          ])}
-        >
-          Output
-        </div>
+
         <div
           draggable
           onDragStart={(e) => onDragStart(e, INodeTypeEnum.mixer)}
           className={clsx([
-            'p-3  border-2 mb-2 cursor-move rounded-md text-center border-dashed bg-white',
+            "mb-2 cursor-move rounded-md border-2 border-dashed bg-white p-3 text-center",
             TypeColorEnum.mixerBorderColor,
           ])}
         >
           Mixer
+        </div>
+        <div
+          draggable
+          onDragStart={(e) => onDragStart(e, INodeTypeEnum.output)}
+          className={clsx([
+            "mb-2 cursor-move rounded-md border-2 bg-white p-3 text-center",
+            TypeColorEnum.outputBorderColor,
+          ])}
+        >
+          Output
         </div>
       </div>
       {/* save layout */}

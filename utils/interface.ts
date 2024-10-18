@@ -1,7 +1,7 @@
 export enum INodeTypeEnum {
-  input = 'input',
-  output = 'output',
-  mixer = 'mixer',
+  input = 'inputNode',
+  output = 'outputNode',
+  mixer = 'mixerNode',
 }
 
 export interface IPayload {

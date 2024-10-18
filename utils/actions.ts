@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { edgespath, nodespath, TypeColorEnum } from '@/utils/constant';
-import { Edge, Node } from '@xyflow/react';
-import { promises as fs } from 'fs';
-import { INodeTypeEnum, IPayload } from './interface';
+import { edgespath, nodespath, TypeColorEnum } from "@/utils/constant";
+import { Edge, Node } from "@xyflow/react";
+import { promises as fs } from "fs";
+import { INodeTypeEnum, IPayload } from "./interface";
 
 /**
  * createNodeAction
@@ -15,16 +15,16 @@ import { INodeTypeEnum, IPayload } from './interface';
 export async function addNodeAction(
   formData: FormData,
   payload: Partial<IPayload> | null,
-  nodes: Node[]
+  nodes: Node[],
 ) {
   if (!payload) {
     return;
-    throw new Error('No payload');
+    throw new Error("No payload");
   }
 
   const id = crypto.randomUUID();
-  const label = formData.get('label');
-  const color = formData.get('color') as string;
+  const label = formData.get("label");
+  const color = formData.get("color") as string;
   const { type, position } = payload;
 
   const node: Node = {
@@ -37,10 +37,6 @@ export async function addNodeAction(
   };
 
   if (color) {
-    node.style = {
-      backgroundColor: color,
-    };
-
     node.data.color = color;
   }
 
@@ -67,24 +63,21 @@ export async function addNodeAction(
 export async function editNodeAction(
   formData: FormData,
   payload: Partial<IPayload> | null,
-  nodes: Node[]
+  nodes: Node[],
 ) {
   if (!payload) {
     return;
-    throw new Error('No payload');
+    throw new Error("No payload");
   }
 
-  const label = formData.get('label');
-  const color = formData.get('color') as string;
+  const label = formData.get("label");
+  const color = formData.get("color") as string;
   const { id } = payload;
 
   nodes.map((n) => {
     if (n.id === id) {
       if (color) {
-        n.style = {
-          backgroundColor: `color-mix(${color}, #000000)`,
-        };
-        n.data.color = `color-mix(${color}, #000000)`;
+        n.data.color = color;
       }
 
       if (label) {
