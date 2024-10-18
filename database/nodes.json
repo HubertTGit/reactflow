@@ -1,1 +1,19 @@
-[{"id":"612b8ac5-39b6-4b8c-811a-1c3e58b70fc8","type":"output","position":{"x":0,"y":0},"data":{"label":"hubert","color":"#d67171"},"measured":{"width":150,"height":40}},{"id":"e99efa15-4846-47fc-a2c8-006fdb341ef2","type":"mixer","position":{"x":-6.06964478689892,"y":-210.1707065604179},"data":{"label":"hubert","color":"#000000"},"measured":{"width":150,"height":40},"selected":false,"dragging":false},{"id":"82690742-e5ee-4451-986f-630037fa2635","type":"mixer","position":{"x":161.67638223846683,"y":-87.68092278090599},"data":{"label":"ew","color":"#bd2828"},"measured":{"width":150,"height":40},"selected":false,"dragging":false},{"id":"1b797d1a-08be-4bf0-b841-cab33fbfe067","type":"mixer","position":{"x":30,"y":-240},"data":{"label":"Mixer 123","color":null},"measured":{"width":150,"height":40},"selected":true},{"id":"36b25b71-a82d-48a0-a9a7-fa4c5ca68a8d","type":"input","position":{"x":225,"y":-315},"data":{"label":"hubert","color":"#aa4141"},"style":{"backgroundColor":"red"},"measured":{"width":150,"height":40},"selected":false},{"id":"5ae88cfc-8a7d-4dbf-acb0-dc8b104bd26a","type":"input","position":{"x":120,"y":-345},"data":{"label":"qwqwqw","color":"#b8ec27"},"style":{"backgroundColor":"#b8ec27"},"measured":{"width":150,"height":40}},{"id":"47f54685-4423-4cbb-b30a-cb1383a88a0e","type":"output","position":{"x":360,"y":-195},"data":{"label":"qw","color":null}}]
+[
+  {
+    "id": "5ae88cfc-8a7d-4dbf-acb0-dc8b104bd26a",
+    "type": "input",
+    "position": { "x": -15, "y": -667 },
+    "data": { "label": "qwqwqw", "color": "#b8ec27" },
+    "style": { "backgroundColor": "#b8ec27" },
+    "measured": { "width": 150, "height": 40 },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "8a1de154-ba2d-4dbd-b3c0-67eb6b67f059",
+    "type": "mixer",
+    "position": { "x": 75, "y": -810 },
+    "data": { "label": "hubert" },
+    "className": "border-blue-700 border-2 border-dashed"
+  }
+]

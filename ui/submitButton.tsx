@@ -11,6 +11,8 @@ export type SubmitButtonProp = {
 
 export const SubmitButton = ({ isEdit = false, type }: SubmitButtonProp) => {
   const { pending } = useFormStatus();
+  const buttonLabel = isEdit ? 'Update' : 'Submit';
+
   return (
     <button
       disabled={pending}
@@ -19,11 +21,11 @@ export const SubmitButton = ({ isEdit = false, type }: SubmitButtonProp) => {
         {
           'bg-green-600 ': type === INodeTypeEnum.input,
           'bg-orange-400 ': type === INodeTypeEnum.output,
-          'bg-blue-600 ': type === INodeTypeEnum.mixer,
+          'bg-blue-700 ': type === INodeTypeEnum.mixer,
         }
       )}
     >
-      {isEdit ? 'Update' : 'Submit'}
+      {pending ? 'Saving...' : buttonLabel}
     </button>
   );
 };

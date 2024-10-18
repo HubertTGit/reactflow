@@ -13,16 +13,15 @@ export default async function Home() {
   return (
     <>
       <main className="grid grid-cols-10 h-screen w-screen">
-        <div className="col-span-9">
-          <ReactFlowProvider>
+        <ReactFlowProvider>
+          <div className="col-span-9">
             <FlowBuilder
               initialNodes={nodesParsed}
               initialEdges={edgesParsed}
             />
-          </ReactFlowProvider>
-        </div>
-
-        <NodeSelector />
+          </div>
+          <NodeSelector />
+        </ReactFlowProvider>
       </main>
     </>
   );
