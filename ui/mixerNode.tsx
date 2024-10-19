@@ -9,7 +9,6 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import { CustomInputHandle } from "./customInputHandle";
-import { IPayload } from "@/utils/interface";
 
 export const MixerNode = ({ id, data }: Node) => {
   const { updateNodeData } = useReactFlow();
