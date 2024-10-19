@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Here's a sample README file for your Color Mixer app:
 
-## Getting Started
+---
 
-First, run the development server:
+# Color Mixer App
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This is a ReactJS and Next.js-based application where users can drag and drop nodes for color mixing. The app allows users to mix two colors and adjust the weight between them using a mixer utility.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Drag and Drop Nodes**: Users can add input nodes (for colors), a mixer node, and an output node. These can be rearranged and connected together.
+- **Color Mixing**: Users can only mix two colors at a time. The weight of each color in the mix can be adjusted using a slider in the mixer utility.
+- **Persistence**: All changes made by the user are saved and persisted using Redis.
+- **Interactive UI**: Built using the React Flow library for handling the flow and connections of nodes.
+- **Styling**: The app's layout and components are styled using Tailwind CSS.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Installation
 
-## Learn More
+To get started with the Color Mixer app, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    git clone [reactgitflow](https://github.com/HubertTGit/reactflow.git)
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Navigate into the project directory and install dependencies:
 
-## Deploy on Vercel
+    ```bash
+    npm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Start the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npm run dev
+    ```
+
+The app will now be running on `http://localhost:3000`.
+
+## Libraries and Tools Used
+
+- **ReactJS**: For building the user interface.
+- **Next.js**: As the framework for server-side rendering and routing.
+- **React Flow**: For creating and managing the flow of nodes and connections.
+- **Tailwind CSS**: For styling the components and layout.
+- **Redis**: For persisting user data across sessions.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+Feel free to modify any sections to better suit your project specifics!
