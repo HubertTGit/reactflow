@@ -4,7 +4,7 @@ export enum INodeTypeEnum {
   mixer = "mixerNode",
 }
 
-export interface IPayload extends Node {
+export interface IPayload {
   id: string;
   type: INodeTypeEnum;
   position: { x: number; y: number };
