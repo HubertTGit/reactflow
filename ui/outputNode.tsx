@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import Spectrum, { colorMix } from "@snipshot/spectrum";
 import { MixerNode } from "./mixerNode";
+import colorMixer from "@/utils/colorMixer";
 
 export const OutputNode = ({ id, data }: Node) => {
   const connections = useHandleConnections({
@@ -25,12 +26,9 @@ export const OutputNode = ({ id, data }: Node) => {
       const color1 = nodeData.data.color1 as string;
       const color2 = nodeData.data.color2 as string;
 
-      const spec1 = new Spectrum("hex", color1);
-      const spec2 = new Spectrum("hex", color2);
+      const mixed = colorMixer(color1, color2, 0.5);
 
-      const mixed = colorMix(spec1, spec2, 0.5);
-
-      setMixedColor(mixed.hex);
+      setMixedColor(mixed);
     }
   }, [nodeData]);
 
