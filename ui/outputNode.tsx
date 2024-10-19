@@ -25,8 +25,11 @@ export const OutputNode = ({ id, data }: Node) => {
     if (nodeData?.data?.color1 && nodeData?.data?.color2) {
       const color1 = nodeData.data.color1 as string;
       const color2 = nodeData.data.color2 as string;
+      const rangeColor = nodeData.data.colorRange as number;
 
-      const mixed = colorMixer(color1, color2, 0.5);
+      console.log(rangeColor);
+
+      const mixed = colorMixer(color1, color2, rangeColor);
 
       setMixedColor(mixed);
     }
