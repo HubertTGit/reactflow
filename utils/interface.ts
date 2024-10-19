@@ -1,10 +1,10 @@
 export enum INodeTypeEnum {
-  input = 'inputNode',
-  output = 'outputNode',
-  mixer = 'mixerNode',
+  input = "inputNode",
+  output = "outputNode",
+  mixer = "mixerNode",
 }
 
-export interface IPayload {
+export interface IPayload extends Node {
   id: string;
   type: INodeTypeEnum;
   position: { x: number; y: number };

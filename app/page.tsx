@@ -1,24 +1,18 @@
-import { promises as fs } from 'fs';
-import { FlowBuilder } from '../ui/flowBuilder';
-import { Edge, Node, ReactFlowProvider } from '@xyflow/react';
-import { NodeSelector } from '@/ui/nodeSelector';
-import { nodespath, edgespath } from '@/utils/constant';
+import { FlowBuilder } from "../ui/flowBuilder";
+import { ReactFlowProvider } from "@xyflow/react";
+import { NodeSelector } from "@/ui/nodeSelector";
+import { getNodes, getEdges } from "@/lib/db";
 
 export default async function Home() {
-  const nodesData = await fs.readFile(nodespath, 'utf-8');
-  const edgesData = await fs.readFile(edgespath, 'utf-8');
-  const nodesParsed = JSON.parse(nodesData) satisfies Node[];
-  const edgesParsed = JSON.parse(edgesData) satisfies Edge[];
+  const nodes = await getNodes();
+  const edges = await getEdges();
 
   return (
     <>
-      <main className="grid grid-cols-10 h-screen w-screen">
+      <main className="grid h-screen w-screen grid-cols-10">
         <ReactFlowProvider>
           <div className="col-span-9">
-            <FlowBuilder
-              initialNodes={nodesParsed}
-              initialEdges={edgesParsed}
-            />
+            <FlowBuilder initialNodes={nodes} initialEdges={edges} />
           </div>
           <NodeSelector />
         </ReactFlowProvider>

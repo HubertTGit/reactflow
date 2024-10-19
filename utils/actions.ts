@@ -1,9 +1,8 @@
 "use server";
 
-import { edgespath, nodespath, TypeColorEnum } from "@/utils/constant";
 import { Edge, Node } from "@xyflow/react";
-import { promises as fs } from "fs";
-import { INodeTypeEnum, IPayload } from "./interface";
+import { IPayload } from "./interface";
+import { setEdges, setNodes } from "@/lib/db";
 
 /**
  * createNodeAction
@@ -43,7 +42,7 @@ export async function addNodeAction(
   const all = [...nodes, node];
 
   try {
-    await fs.writeFile(nodespath, JSON.stringify(all));
+    await setNodes(all);
 
     //revalidatePath('/');
   } catch (error) {
@@ -87,7 +86,7 @@ export async function editNodeAction(
   });
 
   try {
-    await fs.writeFile(nodespath, JSON.stringify(nodes));
+    await setNodes(nodes);
 
     //revalidatePath('/');
   } catch (error) {
@@ -99,8 +98,8 @@ export async function editNodeAction(
 
 export async function saveAll(nodes: Node[], edges: Edge[]) {
   try {
-    await fs.writeFile(nodespath, JSON.stringify(nodes));
-    await fs.writeFile(edgespath, JSON.stringify(edges));
+    await setNodes(nodes);
+    await setEdges(edges);
 
     //revalidatePath('/');
   } catch (error) {
