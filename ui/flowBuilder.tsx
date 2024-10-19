@@ -1,13 +1,6 @@
 "use client";
 
-import React, {
-  Key,
-  use,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   addEdge,
   Background,
@@ -15,7 +8,6 @@ import {
   Connection,
   Controls,
   Edge,
-  EdgeChange,
   MiniMap,
   Node,
   ReactFlow,
@@ -41,7 +33,7 @@ export const FlowBuilder = ({
   initialNodes,
   initialEdges,
 }: FlowBuilderProps) => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [payload, setPayload] = useState<Partial<IPayload> | null>(null);

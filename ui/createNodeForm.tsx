@@ -17,12 +17,12 @@ export const CreateNodeForm = ({
   nodes,
   closeDialog,
 }: NodeFormProps) => {
+  const { setNodes } = useReactFlow();
   if (!payload) {
     return null;
   }
 
   const { isEdit, type } = payload;
-  const { setNodes } = useReactFlow();
 
   return (
     <form

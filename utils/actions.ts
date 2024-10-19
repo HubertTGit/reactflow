@@ -3,7 +3,6 @@
 import { Edge, Node } from "@xyflow/react";
 import { IPayload } from "./interface";
 import { setEdges, setNodes } from "@/lib/db";
-import { revalidatePath } from "next/cache";
 
 /**
  * createNodeAction
