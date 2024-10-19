@@ -10,7 +10,7 @@ export default async function Home() {
 
   return (
     <>
-      <main className="grid h-screen w-screen grid-cols-10">
+      <main className="font-plain grid h-screen w-screen grid-cols-10">
         <ReactFlowProvider>
           <div className="col-span-9">
             <FlowBuilder initialNodes={nodes} initialEdges={edges} />

@@ -44,7 +44,7 @@ export const OutputNode = ({ id, data }: Node) => {
         id={id}
         isConnectable={true}
       />
-      <div>{label}</div>
+      <div className="font-heading">{label}</div>
     </div>
   );
 };

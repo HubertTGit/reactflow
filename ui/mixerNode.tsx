@@ -37,7 +37,7 @@ export const MixerNode = ({ id, data }: Node) => {
         }}
       />
 
-      <div className="text-center">{label}</div>
+      <div className="font-heading mb-2 text-center">{label}</div>
       <div className="flex items-center justify-center gap-2">
         {color1 && (
           <div

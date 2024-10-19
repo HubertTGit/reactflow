@@ -21,7 +21,9 @@ export const NodeSelector = () => {
     <aside className="flex h-screen flex-col items-center gap-4 p-3">
       {/* Draggable nodes */}
       <div>
-        <h3 className="pb-4 text-center">Drag&drop a Node</h3>
+        <h3 className="font-heading pb-4 text-center">
+          Drag&drop <br />a Node
+        </h3>
         <div
           draggable
           onDragStart={(e) => onDragStart(e, INodeTypeEnum.input)}
