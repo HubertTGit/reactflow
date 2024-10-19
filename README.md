@@ -1,7 +1,3 @@
-Here's a sample README file for your Color Mixer app:
-
----
-
 # Color Mixer App
 
 This is a ReactJS and Next.js-based application where users can drag and drop nodes for color mixing. The app allows users to mix two colors and adjust the weight between them using a mixer utility.
