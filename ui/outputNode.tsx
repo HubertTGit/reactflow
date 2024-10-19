@@ -8,8 +8,6 @@ import {
   useNodesData,
 } from "@xyflow/react";
 import { useEffect, useState } from "react";
-import Spectrum, { colorMix } from "@snipshot/spectrum";
-import { MixerNode } from "./mixerNode";
 import colorMixer from "@/utils/colorMixer";
 
 export const OutputNode = ({ id, data }: Node) => {
@@ -27,15 +25,13 @@ export const OutputNode = ({ id, data }: Node) => {
       const color2 = nodeData.data.color2 as string;
       const rangeColor = nodeData.data.colorRange as number;
 
-      console.log(rangeColor);
-
       const mixed = colorMixer(color1, color2, rangeColor);
 
       setMixedColor(mixed);
     }
   }, [nodeData]);
 
-  const { label } = data;
+  const label = data.label as string;
   return (
     <div
       className="rounded-lg border-2 border-orange-400 bg-white p-2 text-sm"

@@ -1,19 +1,15 @@
 "use client";
 
-import {
-  Handle,
-  Position,
-  Node,
-  useHandleConnections,
-  useNodesData,
-  useReactFlow,
-} from "@xyflow/react";
+import { Handle, Position, Node, useReactFlow } from "@xyflow/react";
 import { CustomInputHandle } from "./customInputHandle";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 
 export const MixerNode = ({ id, data }: Node) => {
   const { updateNodeData } = useReactFlow();
-  const { label, color1, color2, colorRange } = data;
+  const label = data.label as string;
+  const color1 = data.color1 as string;
+  const color2 = data.color2 as string;
+  const colorRange = data.colorRange as number;
 
   const onRangeHandler = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
