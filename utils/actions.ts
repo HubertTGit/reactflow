@@ -3,21 +3,21 @@
 import { Edge, Node } from "@xyflow/react";
 import { IPayload } from "./interface";
 import { setEdges, setNodes } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 /**
  * createNodeAction
  * @param formData FormData
  * @param payload Partial<IPayload> | null
- * @param nodes Node[]
+ * @param currentNodes Node[]
  * @returns void
  */
 export async function addNodeAction(
   formData: FormData,
   payload: Partial<IPayload> | null,
-  nodes: Node[],
-) {
+  currentNodes: Node[],
+): Promise<Node[] | { error: unknown }> {
   if (!payload) {
-    return;
     throw new Error("No payload");
   }
 
@@ -39,12 +39,11 @@ export async function addNodeAction(
     node.data.color = color;
   }
 
-  const all = [...nodes, node];
+  const nodes = [...currentNodes, node];
 
   try {
-    await setNodes(all);
-
-    //revalidatePath('/');
+    await setNodes(nodes);
+    return nodes;
   } catch (error) {
     return {
       error,
@@ -63,9 +62,8 @@ export async function editNodeAction(
   formData: FormData,
   payload: Partial<IPayload> | null,
   nodes: Node[],
-) {
+): Promise<Node[] | { error: unknown }> {
   if (!payload) {
-    return;
     throw new Error("No payload");
   }
 
@@ -87,8 +85,7 @@ export async function editNodeAction(
 
   try {
     await setNodes(nodes);
-
-    //revalidatePath('/');
+    return nodes;
   } catch (error) {
     return {
       error,
@@ -96,12 +93,18 @@ export async function editNodeAction(
   }
 }
 
-export async function saveAll(nodes: Node[], edges: Edge[]) {
+export async function saveAll(
+  nodes: Node[],
+  edges: Edge[],
+): Promise<{ nodes: Node[]; edges: Edge[] } | { error: unknown }> {
   try {
     await setNodes(nodes);
     await setEdges(edges);
 
-    //revalidatePath('/');
+    return {
+      nodes,
+      edges,
+    };
   } catch (error) {
     return {
       error,

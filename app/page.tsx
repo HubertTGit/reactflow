@@ -2,6 +2,7 @@ import { FlowBuilder } from "../ui/flowBuilder";
 import { ReactFlowProvider } from "@xyflow/react";
 import { NodeSelector } from "@/ui/nodeSelector";
 import { getNodes, getEdges } from "@/lib/db";
+import DialogComponent from "../ui/dialogComponent";
 
 export default async function Home() {
   const nodes = await getNodes();

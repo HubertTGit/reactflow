@@ -1,6 +1,13 @@
-'use client';
+"use client";
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  Key,
+  use,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   addEdge,
   Background,
@@ -16,14 +23,14 @@ import {
   useNodesState,
   useReactFlow,
   NodeTypes,
-} from '@xyflow/react';
+} from "@xyflow/react";
 
-import '@xyflow/react/dist/style.css';
-import { INodeTypeEnum, IPayload } from '@/utils/interface';
-import DialogComponent from './dialogComponent';
-import { InputNode } from './inputNode';
-import { OutputNode } from './outputNode';
-import { MixerNode } from './mixerNode';
+import "@xyflow/react/dist/style.css";
+import { INodeTypeEnum, IPayload } from "@/utils/interface";
+import DialogComponent from "./dialogComponent";
+import { InputNode } from "./inputNode";
+import { OutputNode } from "./outputNode";
+import { MixerNode } from "./mixerNode";
 
 export type FlowBuilderProps = {
   initialNodes: Node[];
@@ -42,8 +49,23 @@ export const FlowBuilder = ({
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
+    [setEdges],
   );
+
+  const onEscapeHandler = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      dialogRef.current?.close();
+      setPayload(null);
+    }
+  }; // escapeHandler
+
+  useEffect(() => {
+    document.addEventListener("keyup", onEscapeHandler);
+
+    return () => {
+      document.removeEventListener("keyup", onEscapeHandler);
+    };
+  }, []);
 
   useEffect(() => {
     if (!payload) {
@@ -52,10 +74,6 @@ export const FlowBuilder = ({
 
     dialogRef.current?.showModal();
   }, [payload]);
-
-  useEffect(() => {
-    console.log(nodes, edges);
-  }, [nodes, edges]);
 
   const onDrop = useCallback(
     (evt: React.DragEvent<HTMLDivElement>) => {
@@ -66,11 +84,11 @@ export const FlowBuilder = ({
           x: evt.clientX,
           y: evt.clientY,
         }),
-        type: evt.dataTransfer.getData('widgetType') as INodeTypeEnum,
+        type: evt.dataTransfer.getData("widgetType") as INodeTypeEnum,
         isEdit: false,
       });
     },
-    [setPayload, screenToFlowPosition]
+    [setPayload, screenToFlowPosition],
   );
 
   const onNodeDoubleClick = useCallback(
@@ -86,15 +104,17 @@ export const FlowBuilder = ({
         isEdit: true,
       });
     },
-    [setPayload]
+    [setPayload],
   );
 
   const onDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   }, []);
 
-  const closeModalHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const closeModalHandler = (event?: React.MouseEvent<HTMLButtonElement>) => {
+    if (event) {
+      event.preventDefault();
+    }
     dialogRef.current?.close();
     setPayload(null);
   };

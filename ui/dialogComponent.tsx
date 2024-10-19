@@ -1,14 +1,14 @@
-import clsx from 'clsx';
-import React, { forwardRef } from 'react';
-import { EditNodeForm } from './editNodeForm';
-import { CreateNodeForm } from './createNode';
-import { INodeTypeEnum, IPayload } from '@/utils/interface';
-import { Node } from '@xyflow/react';
+import clsx from "clsx";
+import React, { forwardRef } from "react";
+import { EditNodeForm } from "./editNodeForm";
+import { CreateNodeForm } from "./createNodeForm";
+import { INodeTypeEnum, IPayload } from "@/utils/interface";
+import { Node } from "@xyflow/react";
 
 export type DialogComponentProps = {
   payload: Partial<IPayload> | null;
   nodes: Node[];
-  closeModalHandler: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  closeModalHandler: (evt?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const DialogComponent = forwardRef<HTMLDialogElement, DialogComponentProps>(
@@ -17,13 +17,13 @@ const DialogComponent = forwardRef<HTMLDialogElement, DialogComponentProps>(
       <dialog
         ref={ref}
         className={clsx(
-          'min-w-20 bg-white p-3 rounded-lg border-2 backdrop:bg-black/25 backdrop:backdrop-blur-sm',
+          "min-w-20 rounded-lg border-2 bg-white p-3 backdrop:bg-black/25 backdrop:backdrop-blur-sm",
           {
-            'border-green-600': payload?.type === INodeTypeEnum.input,
-            'border-orange-400': payload?.type === INodeTypeEnum.output,
-            'border-blue-700': payload?.type === INodeTypeEnum.mixer,
-            'border-dashed': payload?.type === INodeTypeEnum.mixer,
-          }
+            "border-green-600": payload?.type === INodeTypeEnum.input,
+            "border-orange-400": payload?.type === INodeTypeEnum.output,
+            "border-blue-700": payload?.type === INodeTypeEnum.mixer,
+            "border-dashed": payload?.type === INodeTypeEnum.mixer,
+          },
         )}
       >
         <div>
@@ -44,9 +44,9 @@ const DialogComponent = forwardRef<HTMLDialogElement, DialogComponentProps>(
         </div>
       </dialog>
     );
-  }
+  },
 );
 
-DialogComponent.displayName = 'DialogComponent';
+DialogComponent.displayName = "DialogComponent";
 
 export default DialogComponent;
