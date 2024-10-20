@@ -3,6 +3,7 @@
 import { Edge, Node } from "@xyflow/react";
 import { INodeTypeEnum, IPayload } from "./interface";
 import { setEdges, setNodes } from "@/lib/db";
+import { v4 as uuid } from "uuid";
 
 /**
  * createNodeAction
@@ -20,7 +21,7 @@ export async function addNodeAction(
     throw new Error("No payload");
   }
 
-  const id = crypto.randomUUID();
+  const id = uuid();
   const label = formData.get("label");
   const color = formData.get("color") as string;
   const { type, position } = payload;
