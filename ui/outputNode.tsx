@@ -36,6 +36,8 @@ export const OutputNode = ({ id, data }: Node) => {
       const mixed = colorMixer(color1, color2, rangeColor);
 
       setMixedColor(mixed);
+    } else {
+      setMixedColor("#fff");
     }
   }, [nodeData]);
 

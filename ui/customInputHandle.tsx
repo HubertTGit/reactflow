@@ -37,14 +37,20 @@ export const CustomInputHandle = ({
   const nodeData = useNodesData(connections?.[0]?.source);
 
   useEffect(() => {
+    // Determine which color key to update based on the handle's id
+    const colorKey = id === "color-1" ? "color1" : "color2";
+    console.log(nodeData);
     if (nodeData) {
-      // Determine which color key to update based on the handle's id
-      const colorKey = id === "color-1" ? "color1" : "color2";
-
       // Update the connected node's data with the new color value
       updateNodeData(nodeId, (prev) => ({
         ...prev.data,
         [colorKey]: nodeData.data.color,
+      }));
+    } else {
+      // Update the connected node's with reset color
+      updateNodeData(nodeId, (prev) => ({
+        ...prev.data,
+        [colorKey]: "#fff",
       }));
     }
   }, [nodeData, nodeId, updateNodeData, id]);
