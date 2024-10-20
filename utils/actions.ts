@@ -1,7 +1,7 @@
 "use server";
 
 import { Edge, Node } from "@xyflow/react";
-import { IPayload } from "./interface";
+import { INodeTypeEnum, IPayload } from "./interface";
 import { setEdges, setNodes } from "@/lib/db";
 
 /**
@@ -36,6 +36,12 @@ export async function addNodeAction(
 
   if (color) {
     node.data.color = color;
+  }
+
+  if (type === INodeTypeEnum.mixer) {
+    node.data.color1 = "#fff";
+    node.data.color2 = "#fff";
+    node.data.colorRange = 0.5;
   }
 
   const nodes = [...currentNodes, node];

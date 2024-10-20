@@ -26,7 +26,9 @@ export const CustomInputHandle = ({
   const nodeData = useNodesData(connections?.[0]?.source);
 
   useEffect(() => {
-    onChangeInfo(nodeData);
+    if (nodeData) {
+      onChangeInfo(nodeData);
+    }
   }, [nodeData, onChangeInfo]);
 
   return (
