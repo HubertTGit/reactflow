@@ -27,10 +27,10 @@ export const CustomInputHandle = ({
 
   useEffect(() => {
     onChangeInfo(nodeData);
-  }, [nodeData]);
+  }, [nodeData, onChangeInfo]);
 
   return (
-    <div>
+    <>
       <Handle
         type="target"
         position={Position.Top}
@@ -38,6 +38,6 @@ export const CustomInputHandle = ({
         style={{ left: xPos }}
         isConnectable={connections?.length <= 1}
       />
-    </div>
+    </>
   );
 };
