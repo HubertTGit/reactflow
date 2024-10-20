@@ -4,20 +4,23 @@ import {
   useHandleConnections,
   useNodesData,
   Node,
+  useReactFlow,
 } from "@xyflow/react";
 import React, { useEffect } from "react";
 
 export type CustomInputHandleProps = {
   id: string;
   xPos: number;
-  onChangeInfo: (updated: Pick<Node, "id" | "type" | "data"> | null) => void;
+  nodeId: string;
+  onChangeInfo?: (updated: Pick<Node, "id" | "type" | "data"> | null) => void;
 };
 
 export const CustomInputHandle = ({
   id,
-  onChangeInfo,
+  nodeId,
   xPos,
 }: CustomInputHandleProps) => {
+  const { updateNodeData } = useReactFlow();
   const connections = useHandleConnections({
     type: "target",
     id,
@@ -27,9 +30,13 @@ export const CustomInputHandle = ({
 
   useEffect(() => {
     if (nodeData) {
-      onChangeInfo(nodeData);
+      const colorKey = id === "color-1" ? "color1" : "color2";
+      updateNodeData(nodeId, (prev) => ({
+        ...prev.data,
+        [colorKey]: nodeData.data.color,
+      }));
     }
-  }, [nodeData, onChangeInfo]);
+  }, [nodeData, nodeId, updateNodeData, id]);
 
   return (
     <>

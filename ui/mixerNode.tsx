@@ -23,26 +23,8 @@ export const MixerNode = ({ id, data }: Node) => {
 
   return (
     <div className="w-[150px] rounded-lg border-2 border-dashed border-blue-700 bg-white p-2 text-sm">
-      <CustomInputHandle
-        xPos={50}
-        id="color-1"
-        onChangeInfo={(value) => {
-          updateNodeData(id, (prev) => ({
-            ...prev.data,
-            color1: value?.data?.color,
-          }));
-        }}
-      />
-      <CustomInputHandle
-        xPos={100}
-        id="color-2"
-        onChangeInfo={(value) => {
-          updateNodeData(id, (prev) => ({
-            ...prev.data,
-            color2: value?.data?.color,
-          }));
-        }}
-      />
+      <CustomInputHandle xPos={50} id="color-1" nodeId={id} />
+      <CustomInputHandle xPos={100} id="color-2" nodeId={id} />
 
       <div className="mb-2 text-center font-heading">{label}</div>
       <div className="flex items-center justify-center gap-2">
