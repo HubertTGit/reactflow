@@ -44,7 +44,7 @@ export const MixerNode = ({ id, data }: Node) => {
         }}
       />
 
-      <div className="font-heading mb-2 text-center">{label}</div>
+      <div className="mb-2 text-center font-heading">{label}</div>
       <div className="flex items-center justify-center gap-2">
         {color1 && (
           <div
@@ -64,7 +64,7 @@ export const MixerNode = ({ id, data }: Node) => {
           type="range"
           className="nodrag"
           onChange={onRangeHandler}
-          value={colorRange}
+          defaultValue={colorRange}
           min="0"
           max="1"
           step="0.01"
