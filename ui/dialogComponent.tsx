@@ -27,7 +27,7 @@ const DialogComponent = forwardRef<HTMLDialogElement, DialogComponentProps>(
         )}
       >
         <div>
-          <h1 className="font-heading mb-3 text-lg">{payload?.type}</h1>
+          <h1 className="mb-3 font-heading text-lg">{payload?.type}</h1>
           {payload?.isEdit ? (
             <EditNodeForm
               payload={payload}

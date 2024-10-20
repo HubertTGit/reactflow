@@ -7,6 +7,15 @@ import { INodeTypeEnum } from "@/utils/interface";
 import clsx from "clsx";
 import { useReactFlow, Node } from "@xyflow/react";
 
+/**
+ * EditNodeForm component is responsible for rendering a form to edit a node.
+ * It calls editNodeAction when the form is submitted and updates the nodes.
+ * It also closes the dialog when submitted or canceled.
+ *
+ * @param payload The payload of the node to be edited, contains the id, type, position, label, color and isEdit flag.
+ * @param nodes The list of nodes in the flow.
+ * @param closeDialog The function to close the dialog.
+ */
 export const EditNodeForm = ({
   payload,
   nodes,
@@ -15,16 +24,19 @@ export const EditNodeForm = ({
   const { type, isEdit } = payload!;
   const { setNodes } = useReactFlow();
 
+  /**
+   * Form action to edit a node.
+   * It calls editNodeAction and updates the nodes then closes the dialog.
+   * @param frm The form event.
+   */
+  const formAction = async (frm: FormData) => {
+    const updated = (await editNodeAction(frm, payload, nodes)) as Node[];
+    setNodes(updated);
+    closeDialog();
+  };
+
   return (
-    <form
-      action={async (frm) => {
-        const updated = (await editNodeAction(frm, payload, nodes)) as Node[];
-
-        setNodes(updated);
-
-        closeDialog();
-      }}
-    >
+    <form action={formAction}>
       <div className="mb-4 flex items-center gap-2">
         <label>Label</label>
         <input

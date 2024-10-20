@@ -10,6 +10,14 @@ import {
 import { useEffect, useState } from "react";
 import colorMixer from "@/utils/colorMixer";
 
+/**
+ * OutputNode component is responsible for rendering an output node in the flow.
+ * It displays the mixed color from the two input nodes connected to it.
+ *
+ * @param id The unique identifier of the node.
+ * @param data The data object containing node information.
+ * @returns JSX.Element
+ */
 export const OutputNode = ({ id, data }: Node) => {
   const connections = useHandleConnections({
     type: "target",
@@ -34,10 +42,18 @@ export const OutputNode = ({ id, data }: Node) => {
   const label = data.label as string;
   return (
     <div
-      className="rounded-lg border-2 border-orange-400 bg-white p-2 text-sm"
+      /**
+       * The output node component should have a background color of the mixed
+       * color of the two input nodes connected to it.
+       */
       style={{ backgroundColor: mixedColor }}
+      className="rounded-lg border-2 border-orange-400 bg-white p-2 text-sm"
     >
       <Handle
+        /**
+         * The handle component should be rendered at the top of the output node
+         * and should be connectable.
+         */
         type="target"
         position={Position.Top}
         id={id}

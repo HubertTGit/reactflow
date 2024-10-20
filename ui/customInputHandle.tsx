@@ -15,22 +15,33 @@ export type CustomInputHandleProps = {
   onChangeInfo?: (updated: Pick<Node, "id" | "type" | "data"> | null) => void;
 };
 
+/**
+ * CustomInputHandle component is responsible for rendering a handle
+ * which connects to other nodes in the flow. It updates the connected
+ * node's data with specific color information.
+ */
 export const CustomInputHandle = ({
   id,
   nodeId,
   xPos,
 }: CustomInputHandleProps) => {
   const { updateNodeData } = useReactFlow();
+
+  // Establish connections for the target handle based on the provided id
   const connections = useHandleConnections({
     type: "target",
     id,
   });
 
+  // Retrieve data from the connected node
   const nodeData = useNodesData(connections?.[0]?.source);
 
   useEffect(() => {
     if (nodeData) {
+      // Determine which color key to update based on the handle's id
       const colorKey = id === "color-1" ? "color1" : "color2";
+
+      // Update the connected node's data with the new color value
       updateNodeData(nodeId, (prev) => ({
         ...prev.data,
         [colorKey]: nodeData.data.color,
@@ -40,6 +51,7 @@ export const CustomInputHandle = ({
 
   return (
     <>
+      {/* Render a handle component with dynamic positioning and connection ability */}
       <Handle
         type="target"
         position={Position.Top}

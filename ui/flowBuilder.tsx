@@ -29,21 +29,58 @@ export type FlowBuilderProps = {
   initialEdges: Edge[];
 };
 
+/**
+ * The ReactFlow component.
+ * @param {FlowBuilderProps} props
+ * @returns The ReactFlow JSX.Element.
+ */
 export const FlowBuilder = ({
   initialNodes,
   initialEdges,
 }: FlowBuilderProps) => {
+  /**
+   * The state of all the nodes in the flow.
+   * `nodes` is the current nodes, `setNodes` is the function to update the nodes and `onNodesChange` is the callback when the nodes change.
+   */
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
+
+  /**
+   * The state of all the edges in the flow.
+   * `edges` is the current edges, `setEdges` is the function to update the edges and `onEdgesChange` is the callback when the edges change.
+   */
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  /**
+   * The reference to the dialog.
+   */
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  /**
+   * The payload of the node to be edited or the new node to be created.
+   * If `payload` is `null`, no node is being edited or created.
+   */
   const [payload, setPayload] = useState<Partial<IPayload> | null>(null);
+
+  /**
+   * The screen to flow position function.
+   */
   const { screenToFlowPosition } = useReactFlow();
 
+  /**
+   * The callback when a connection is made.
+   * It adds the new edge to the edges state.
+   * @param params The connection parameters.
+   */
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
 
+  /**
+   * The callback when the escape key is pressed.
+   * It closes the dialog and sets the payload to null.
+   * @param event The key event.
+   */
   const onEscapeHandler = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       dialogRef.current?.close();
@@ -51,6 +88,9 @@ export const FlowBuilder = ({
     }
   }; // escapeHandler
 
+  /**
+   * The effect to add the escape key event listener.
+   */
   useEffect(() => {
     document.addEventListener("keyup", onEscapeHandler);
 
@@ -59,6 +99,9 @@ export const FlowBuilder = ({
     };
   }, []);
 
+  /**
+   * The effect to show the dialog when the payload is not null.
+   */
   useEffect(() => {
     if (!payload) {
       return;
@@ -67,6 +110,11 @@ export const FlowBuilder = ({
     dialogRef.current?.showModal();
   }, [payload]);
 
+  /**
+   * The callback when a node is dropped.
+   * It sets the payload to a new node with the type and position of the dropped node.
+   * @param evt The drop event.
+   */
   const onDrop = useCallback(
     (evt: React.DragEvent<HTMLDivElement>) => {
       evt.preventDefault();
@@ -83,6 +131,12 @@ export const FlowBuilder = ({
     [setPayload, screenToFlowPosition],
   );
 
+  /**
+   * The callback when a node is double clicked.
+   * It sets the payload to the node with its id, type, position, color and label.
+   * @param event The double click event.
+   * @param node The node.
+   */
   const onNodeDoubleClick = useCallback(
     (event: React.MouseEvent, node: Node) => {
       const { data } = node;
@@ -99,10 +153,20 @@ export const FlowBuilder = ({
     [setPayload],
   );
 
+  /**
+   * The callback when a node is dragged over.
+   * It prevents the default behavior.
+   * @param event The drag over event.
+   */
   const onDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   }, []);
 
+  /**
+   * The callback to close the dialog.
+   * It sets the payload to null and closes the dialog.
+   * @param event The close event.
+   */
   const closeModalHandler = (event?: React.MouseEvent<HTMLButtonElement>) => {
     if (event) {
       event.preventDefault();
@@ -111,6 +175,9 @@ export const FlowBuilder = ({
     setPayload(null);
   };
 
+  /**
+   * The node types.
+   */
   const nodeTypes = {
     inputNode: InputNode,
     outputNode: OutputNode,
